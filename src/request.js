@@ -4,17 +4,33 @@ module.exports = function(state) {
 
   var request = {
 
-    session: {},
+    session: {
+
+      destroy: function(key){
+
+        delete this[key];
+
+      }
+    
+    },
 
     end: function(){
 
       var result = {};
+
+      delete request.session['destroy'];
 
       if( !_.isEmpty(request.session) ){ 
         result.session =  request.session;
       };
 
       return result;
+
+    },
+
+    param: function(key){
+
+      return state.params[key];
 
     }
   
@@ -30,7 +46,7 @@ module.exports = function(state) {
 
     if( !_.isUndefined(state.session) ){
 
-      request.session = state.session;
+      _.extend( request.session, state.session );
 
     };
 

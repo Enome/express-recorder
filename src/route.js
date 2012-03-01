@@ -13,6 +13,11 @@ var walk = function(middlewares, req, res, nex){
 
 var replay = function(type, url, state, callback){
 
+  if(arguments.length === 3){
+    callback = state;
+    state = {};
+  };
+
   var middlewares = _.clone(app.routes[type][url]);
 
   var end = function(){
@@ -31,7 +36,7 @@ var replay = function(type, url, state, callback){
 
 };
 
-exports.recorder = {
+module.exports = {
  
   record: function(){
 

@@ -3,7 +3,7 @@ var response = require('./response');
 var request = require ('./request');
 var result = require('./result');
 
-exports.recorder = function(middleware, state, callback){
+module.exports = function(middleware, state, callback){
 
 
   var end = function(){

@@ -1,4 +1,4 @@
-var recorder = require('../src/route').recorder;
+var recorder = require('../src/route');
 
 
 describe('Route Recorder', function(){
@@ -194,4 +194,84 @@ describe('Route Recorder', function(){
 
   });
 
+  describe('Example three', function(){
+
+    var middleware1 = function( req, res, next ){
+
+      req.session.url = req.param('redirect_url');
+
+      next()
+
+    }
+
+    var middleware2 = function( req, res, next ){
+
+      var url = req.session.url;
+      req.session.destroy('url');
+      res.render( url );
+
+    };
+
+    var route = function(app){
+
+      app.delete( '/delete', middleware1, middleware2 );
+
+    };
+
+    beforeEach(function(){
+      route( recorder.record() );
+    });
+
+    it('', function(){
+
+      recorder.replay.delete( '/delete', { params: { redirect_url: '/somewhere' } }, function(result){
+
+        result.data.should.eql({
+
+          render: '/somewhere',
+          next: [true]
+        
+        });
+
+      });
+
+    });
+
+  });
+
+  describe('Example four', function(){
+
+    var middleware1 = function( req, res, next ){
+
+      res.render('products/show')
+
+    };
+
+    var route = function(app){
+
+      app.put( '/products', middleware1 );
+
+    };
+
+    beforeEach(function(){
+
+      route( recorder.record() );
+
+    });
+
+    it('', function(){
+
+      recorder.replay.put( '/products', function(result){
+
+        result.data.should.eql({
+
+          render: 'products/show',
+        
+        });
+
+      });
+
+    });
+
+  });
 });

@@ -1,4 +1,4 @@
-var recorder = require('../src/middleware').recorder;
+var recorder = require('../src/middleware');
 
 describe('Middleware', function(){
 
