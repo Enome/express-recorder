@@ -41,7 +41,7 @@ describe('Next', function(){
     it('creates a next array and adds 404', function(){
 
       var nex = next();
-      nex( new Error(404) );
+      nex( '404' );
       nex.end().next.should.eql( [ '404' ] );
 
     });

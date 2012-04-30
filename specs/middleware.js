@@ -42,7 +42,7 @@ describe('Middleware', function(){
 
     it('sets redirect url', function(done){
 
-      recorder(middleware, {}, function(result){
+      recorder(middleware, function(result){
 
         result.eql({ redirect:'/login' });
 

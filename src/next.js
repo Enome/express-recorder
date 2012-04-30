@@ -14,7 +14,7 @@ module.exports = function( walk, end ){
       result.next.push(true);
       !_.isUndefined(walk) && walk();
     } else {
-      result.next.push(err.message);
+      result.next.push(err);
       !_.isUndefined(end) && end();
     };
 

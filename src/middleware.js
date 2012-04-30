@@ -5,6 +5,11 @@ var result = require('./result');
 
 module.exports = function(middleware, state, callback){
 
+  if( arguments.length === 2 ){
+
+    callback = state;
+
+  };
 
   var end = function(){
     callback( result( req, res, nex ) )

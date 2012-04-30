@@ -50,6 +50,18 @@ module.exports = function(state) {
 
     };
 
+    if( !_.isUndefined(state.query) ){
+
+      request.query = state.query;
+
+    };
+
+    if( !_.isUndefined(state.request) ){
+
+      _.extend( request, state.request );
+
+    };
+
   };
 
   return request;

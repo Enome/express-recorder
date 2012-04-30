@@ -65,4 +65,33 @@ describe('Request', function(){
 
   });
 
+  describe('Query', function(){
+
+    it('sets the header user', function(){
+
+      var req = request( { query: { q: 'search term' } } );
+      req.query.q.should.eql('search term');
+
+    });
+
+  });
+
+  describe('Uncommon properties', function(){
+
+    it('sets the header user', function(){
+
+      var req = request( { request: { headers: { user: 'Geert' } } } );
+      req.headers.user.should.eql('Geert');
+
+    });
+
+    it('sets the route method to post', function(){
+
+      var req = request( { request: { route: { method: 'post' } } } );
+      req.route.method.should.eql('post');
+
+    });
+
+  });
+
 });
