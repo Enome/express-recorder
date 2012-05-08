@@ -22,6 +22,13 @@ describe('Request', function(){
 
     });
 
+    it('Adds an empty param object', function(){
+
+      var req = request( { params: {} } );
+      req.params.should.eql( {} );
+
+    });
+
   });
 
   describe('Session', function(){
@@ -67,7 +74,7 @@ describe('Request', function(){
 
   describe('Query', function(){
 
-    it('sets the header user', function(){
+    it('sets the query q to "search term"', function(){
 
       var req = request( { query: { q: 'search term' } } );
       req.query.q.should.eql('search term');

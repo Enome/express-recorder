@@ -95,6 +95,7 @@ describe('Response', function(){
 
   });
 
+
   describe('Send', function(){
 
     it('sets send', function(){
@@ -111,6 +112,19 @@ describe('Response', function(){
       var resp = response( {}, function(){ called = true; });
       resp.send('Send me to the moon');
       called.should.be.true
+
+    });
+
+  });
+
+
+  describe('Header', function(){
+
+    it('sets header', function(){
+
+      var resp = response();
+      resp.header('Content-Type', 'application/json');
+      resp.end().should.eql( { headers: { 'Content-Type': 'application/json' } } );
 
     });
 

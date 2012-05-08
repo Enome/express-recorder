@@ -10,6 +10,8 @@ module.exports = function(state, callback){
 
   };
 
+  // This ends the response
+  
   var callCallback = function(){
 
     if(!_.isUndefined(callback)) callback()
@@ -56,6 +58,13 @@ module.exports = function(state, callback){
     redirect: function(url){
       result.redirect = url;
       callCallback()
+    },
+
+    header: function(key, value){
+      if(!result.headers){
+        result.headers = {};
+      };
+      result.headers[key] = value;
     },
 
     end: function(){ 

@@ -36,27 +36,33 @@ module.exports = function(state) {
   
   };
 
-  if( !_.isUndefined(state) ){
+  if( state ){
 
-    if( !_.isUndefined(state.body) ){
+    if( state.body ){
 
       request.body = state.body;
 
     };
 
-    if( !_.isUndefined(state.session) ){
+    if( state.session ){
 
       _.extend( request.session, state.session );
 
     };
 
-    if( !_.isUndefined(state.query) ){
+    if( state.query ){
 
       request.query = state.query;
 
     };
 
-    if( !_.isUndefined(state.request) ){
+    if( state.params ){
+
+      request.params = state.params;
+
+    };
+
+    if( state.request ){
 
       _.extend( request, state.request );
 
