@@ -62,6 +62,12 @@ module.exports = function(state) {
 
     };
 
+    if( state.cookies ){
+
+      request.cookies = state.cookies;
+
+    };
+
     if( state.request ){
 
       _.extend( request, state.request );

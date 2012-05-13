@@ -83,6 +83,17 @@ describe('Request', function(){
 
   });
 
+  describe('Cookies', function(){
+
+    it('sets the cookie fruit to "banana"', function(){
+
+      var req = request( { cookies: { fruit: 'banana' } } );
+      req.cookies.fruit.should.eql('banana');
+
+    });
+
+  });
+
   describe('Uncommon properties', function(){
 
     it('sets the header user', function(){

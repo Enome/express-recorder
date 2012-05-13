@@ -1,0 +1,39 @@
+info it worked if it ends with ok
+verbose cli [ 'node', '/home/fs/.nvm/v0.6.7/bin/npm', 'test' ]
+info using npm@1.1.0-beta-10
+info using node@v0.6.7
+verbose config file /home/fs/.npmrc
+verbose config file /home/fs/.nvm/v0.6.7/etc/npmrc
+verbose config file /home/fs/.nvm/v0.6.7/lib/node_modules/npm/npmrc
+verbose caching /home/fs/Dropbox/work/2012/express-recorder/package.json
+verbose loadDefaults express-recorder@0.0.1
+verbose run-script [ 'pretest', 'test', 'posttest' ]
+info pretest express-recorder@0.0.1
+info test express-recorder@0.0.1
+verbose unsafe-perm in lifecycle true
+silly exec sh "-c" "make test"
+silly spawning [ 'sh',
+silly spawning   [ '-c', 'make test' ],
+silly spawning   '/home/fs/Dropbox/work/2012/express-recorder' ]
+info express-recorder@0.0.1 Failed to exec test script
+ERR! express-recorder@0.0.1 test: `make test`
+ERR! `sh "-c" "make test"` failed with 2
+ERR! 
+ERR! Failed at the express-recorder@0.0.1 test script.
+ERR! This is most likely a problem with the express-recorder package,
+ERR! not with npm itself.
+ERR! Tell the author that this fails on your system:
+ERR!     make test
+ERR! You can get their info via:
+ERR!     npm owner ls express-recorder
+ERR! There is likely additional logging output above.
+ERR! 
+ERR! System Linux 3.0.0-17-generic
+ERR! command "node" "/home/fs/.nvm/v0.6.7/bin/npm" "test"
+ERR! cwd /home/fs/Dropbox/work/2012/express-recorder
+ERR! node -v v0.6.7
+ERR! npm -v 1.1.0-beta-10
+ERR! code ELIFECYCLE
+ERR! message express-recorder@0.0.1 test: `make test`
+ERR! message `sh "-c" "make test"` failed with 2
+verbose exit [ 1, true ]

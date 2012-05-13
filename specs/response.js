@@ -130,4 +130,17 @@ describe('Response', function(){
 
   });
 
+
+  describe('Cookie', function(){
+
+    it('sets a cookie', function(){
+
+      var resp = response();
+      resp.cookie('fruit', 'banana');
+      resp.end().should.eql( { cookies: { fruit: 'banana' } } );
+
+    });
+
+  });
+
 });

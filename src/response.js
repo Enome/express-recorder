@@ -67,6 +67,13 @@ module.exports = function(state, callback){
       result.headers[key] = value;
     },
 
+    cookie: function(key, value){
+      if(!result.cookie){
+        result.cookies = {};
+      };
+      result.cookies[key] = value;
+    },
+
     end: function(){ 
       return result; 
     }
