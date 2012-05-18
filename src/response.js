@@ -55,6 +55,11 @@ module.exports = function(state, callback){
       callCallback()
     },
 
+    json: function(obj){
+      result.json = obj;
+      callCallback()
+    },
+
     redirect: function(url){
       result.redirect = url;
       callCallback()

@@ -1,6 +1,6 @@
 {
         "name": "express-recorder",
-        "version" : "0.0.2",
+        "version" : "0.0.3",
         "repository": { "type": "git", "url": "git://github.com/Enome/express-recorder.git" },
         "description": "Records your route or middleware and gives you a result you can assert",
         "main": "index.js",

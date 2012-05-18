@@ -143,4 +143,25 @@ describe('Response', function(){
 
   });
 
+  describe('Json', function(){
+
+    it('sets json', function(){
+
+      var resp = response();
+      resp.json({ fruit: 'banana' });
+      resp.end().should.eql( { json: { fruit: 'banana' } } );
+
+    });
+
+    it('calls the callback when set', function(){
+
+      var called = false;
+      var resp = response( {}, function(){ called = true; });
+      resp.send('Send me to the moon');
+      called.should.be.true
+
+    });
+
+  });
+
 });
