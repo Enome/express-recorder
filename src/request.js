@@ -1,12 +1,12 @@
 var _ = require('underscore');
 
-module.exports = function(state) {
+module.exports = function (state) {
 
   var request = {
 
     session: {
 
-      destroy: function(key){
+      destroy: function (key) {
 
         delete this[key];
 
@@ -14,67 +14,80 @@ module.exports = function(state) {
     
     },
 
-    end: function(){
+    end: function () {
 
       var result = {};
 
-      delete request.session['destroy'];
+      delete request.session.destroy;
 
-      if( !_.isEmpty(request.session) ){ 
+      if (!_.isEmpty(request.session)) {
         result.session =  request.session;
-      };
+      }
 
       return result;
 
     },
 
-    param: function(key){
+    param: function (key) {
 
       return state.params[key];
 
-    }
+    },
+
+
+    header: function (key) {
+      return state.headers[key];
+    },
+
+    get : this.header
   
   };
 
-  if( state ){
+  if (state) {
 
-    if( state.body ){
+    if (state.body) {
 
       request.body = state.body;
 
-    };
+    }
 
-    if( state.session ){
+    if (state.session) {
 
-      _.extend( request.session, state.session );
+      _.extend(request.session, state.session);
 
-    };
+    }
 
-    if( state.query ){
+    if (state.query) {
 
       request.query = state.query;
 
-    };
+    }
 
-    if( state.params ){
+    if (state.params) {
 
       request.params = state.params;
 
-    };
+    }
 
-    if( state.cookies ){
+    if (state.cookies) {
 
       request.cookies = state.cookies;
 
-    };
+    }
 
-    if( state.request ){
+    if (state.request) {
 
-      _.extend( request, state.request );
+      _.extend(request, state.request);
 
-    };
+    }
 
-  };
+    if (state.headers) {
+
+      request.headers = state.headers;
+
+    }
+
+  }
 
   return request;
 
