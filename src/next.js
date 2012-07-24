@@ -1,26 +1,22 @@
-var _ = require('underscore');
-
-module.exports = function( walk, end ){
+module.exports = function (end) {
 
   var result = {};
 
-  var next = function(err){
+  var next = function (err) {
 
-    if( _.isUndefined(result.next) ){
-      result.next = [];
-    };
-
-    if(_.isUndefined(err)){
-      result.next.push(true);
-      !_.isUndefined(walk) && walk();
+    if (typeof err === 'undefined') {
+      result.next = true;
     } else {
-      result.next.push(err);
-      !_.isUndefined(end) && end();
-    };
+      result.next = err;
+    }
+
+    end && end();
 
   };
 
-  next.end = function(){ return result; };
+  next.end = function () {
+    return result;
+  };
 
   return next;
 

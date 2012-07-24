@@ -1,17 +1,25 @@
 {
-        "name": "express-recorder",
-        "version" : "0.0.5",
-        "repository": { "type": "git", "url": "git://github.com/Enome/express-recorder.git" },
-        "description": "Records your route or middleware and gives you a result you can assert",
-        "main": "index.js",
-        "author": "Geert Pasteels <twitter.com/enome>",
-        "keywords": [ "express", "testing", "middleware", "routes" ],
-
-        "dependencies": {
-                "underscore": "*",
-                "difflet": "*"
-        },
-        "devDependencies": {
-                "should": "*"
-        }
+  "name": "express-recorder",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Enome/express-recorder.git"
+  },
+  "description": "Records your middleware and gives you a result you can assert",
+  "main": "index.js",
+  "author": "Geert Pasteels <twitter.com/enome>",
+  "keywords": [
+    "express",
+    "testing",
+    "middleware",
+    "routes"
+  ],
+  "dependencies": {
+    "underscore": "*",
+    "difflet": "*",
+    "eql": "0.0.5"
+  },
+  "devDependencies": {
+    "should": "*"
+  }
 }

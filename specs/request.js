@@ -116,8 +116,8 @@ describe('Request', function () {
 
     it('sets the header user', function () {
 
-      var req = request({ request: { headers: { user: 'Geert' } } });
-      req.headers.user.should.eql('Geert');
+      var req = request({ request: { hey: { user: 'Geert' } } });
+      req.hey.user.should.eql('Geert');
 
     });
 

@@ -1,88 +1,82 @@
-var _ = require('underscore');
+var extend = require('underscore').extend;
 
-module.exports = function(state, callback){
+module.exports = function (state, callback) {
 
   var result = {};
 
-  if( !_.isUndefined(state) && !_.isUndefined(state.locals) ){
-
-    result.locals = state.locals;
-
-  };
-
   // This ends the response
   
-  var callCallback = function(){
-
-    if(!_.isUndefined(callback)) callback()
-
+  var callCallback = function () {
+    callback && callback();
   };
 
-  return {
+  var response = {
 
-    locals: function(){
+    locals: (function () {
 
-      return result.locals
+      // Setup locals
 
+      if (typeof state !== 'undefined' && typeof state.locals !== 'undefined') {
+        return state.locals;
+      }
+
+      return {};
+
+    }()),
+
+    render: function (view, locals) {
+
+      result.render = view;
+
+      // Set locals
+
+      if (typeof locals !== 'undefined') {
+        extend(response.locals, locals);
+      }
+
+      callCallback();
     },
 
-    local: function(key, value){
-
-      if( _.isUndefined(result.locals) ){
-
-        result.locals = {};
-
-      };
-
-      result.locals[key] = value;
-
-    },
-
-    render: function(view, locals){
-      result.render = view
-
-      if(!_.isUndefined(locals)){
-        for( var k in locals){
-          this.local(k, locals[k]);
-        };
-      };
-
-      callCallback()
-    },
-
-    send: function(text){
+    send: function (text) {
       result.send = text;
-      callCallback()
+      callCallback();
     },
 
-    json: function(obj){
+    json: function (obj) {
       result.json = obj;
-      callCallback()
+      callCallback();
     },
 
-    redirect: function(url){
+    redirect: function (url) {
       result.redirect = url;
-      callCallback()
+      callCallback();
     },
 
-    header: function(key, value){
-      if(!result.headers){
+    header: function (key, value) {
+      if (!result.headers) {
         result.headers = {};
-      };
+      }
       result.headers[key] = value;
     },
 
-    cookie: function(key, value){
-      if(!result.cookie){
+    cookie: function (key, value) {
+      if (!result.cookie) {
         result.cookies = {};
-      };
+      }
       result.cookies[key] = value;
     },
 
-    end: function(){ 
-      return result; 
+    end: function () {
+
+      if (Object.keys(response.locals).length !== 0) {
+        result.locals = response.locals;
+      }
+
+      return result;
     }
 
-  }
+  };
+
+  return response;
 
 };

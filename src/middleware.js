@@ -3,21 +3,21 @@ var response = require('./response');
 var request = require ('./request');
 var result = require('./result');
 
-module.exports = function(middleware, state, callback){
+module.exports = function (middleware, state, callback) {
 
-  if( arguments.length === 2 ){
-
+  if (arguments.length === 2) {
     callback = state;
+  }
 
+  var req, res, nex;
+
+  var end = function () {
+    callback(result(req, res, nex));
   };
 
-  var end = function(){
-    callback( result( req, res, nex ) )
-  };
-
-  var req = request(state);
-  var res = response(state, end);
-  var nex = next(end, end);
+  req = request(state);
+  res = response(state, end);
+  nex = next(end);
 
   middleware(req, res, nex);
 

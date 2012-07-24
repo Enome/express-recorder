@@ -1,27 +1,21 @@
-var recorder = require('../src/middleware');
+var recorder = require('../');
 
 describe('Middleware', function () {
 
   describe('Example One', function () {
 
     var middleware = function (req, res, next) {
-
-      res.local('username', req.body.firstname + ' ' + res.locals().lastname);
-
+      res.locals.username = req.body.firstname + ' ' + res.locals.lastname;
       next();
-
     };
 
     it('sets locals and nexts', function (done) {
 
       recorder(middleware, { body: { firstname: 'Geert' }, locals: { lastname: 'Pasteels' } }, function (result) {
 
-        result.data.should.eql({
-          next: [ true ],
-          locals: {
-            lastname: 'Pasteels',
-            username: 'Geert Pasteels'
-          }
+        result.eql({
+          next: true,
+          locals: { lastname: 'Pasteels', username: 'Geert Pasteels' }
         });
 
         done();
